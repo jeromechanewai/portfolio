@@ -456,10 +456,12 @@
                     </div>
                 </div>
                 <div class="contact-form-wrapper">
-                    <!-- Formulaire avec Formspree - Remplacez YOUR_FORM_ID par votre ID Formspree -->
-                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                        <input type="hidden" name="_subject" value="Nouveau message depuis votre portfolio">
-                        <input type="hidden" name="_next" value="https://jeromechanewai.re/#contact">
+                    <!-- Formulaire avec Web3Forms - Remplacez YOUR_ACCESS_KEY par votre clé -->
+                    <!-- Créer une clé sur https://web3forms.com (gratuit, 250 envois/mois) -->
+                    <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="130f55e3-714e-4473-a5ef-1eef19ef47e7">
+                        <input type="hidden" name="subject" value="Nouveau message depuis votre portfolio">
+                        <input type="hidden" name="from_name" value="Portfolio JCW">
                         <div class="form-group">
                             <label for="name">Nom complet</label>
                             <input type="text" id="name" name="name" required placeholder="Votre nom">
