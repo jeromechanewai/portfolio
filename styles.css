@@ -955,6 +955,18 @@ section {
     overflow: hidden;
 }
 
+.portfolio-screenshot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover .portfolio-screenshot {
+    transform: scale(1.05);
+}
+
 .portfolio-placeholder {
     width: 100%;
     height: 100%;
@@ -1028,7 +1040,8 @@ a.portfolio-item {
     color: inherit;
 }
 
-.portfolio-preview-btn {
+.portfolio-preview-btn,
+.portfolio-link-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -1042,10 +1055,18 @@ a.portfolio-item {
     font-weight: 500;
     cursor: pointer;
     transition: var(--transition);
+    text-decoration: none;
 }
 
-.portfolio-preview-btn i {
+.portfolio-preview-btn i,
+.portfolio-link-btn i {
     font-size: 0.85rem;
+}
+
+.portfolio-link-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
 }
 
 .portfolio-item:hover .portfolio-preview-btn {
