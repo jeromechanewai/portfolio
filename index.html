@@ -519,37 +519,47 @@
         </div>
     </footer>
 
-    <!-- Preview Overlay (Dynamique) -->
+    <!-- Preview Overlay (Iframe) -->
     <div class="preview-overlay" id="previewOverlay">
-        <div class="preview-container" id="previewContainer">
+        <div class="preview-container preview-container-large" id="previewContainer">
             <div class="preview-header">
                 <div class="preview-browser-dots">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
-                <span class="preview-title" id="previewTitle">Aperçu du projet</span>
-                <button class="preview-close" id="previewCloseBtn" aria-label="Fermer l'aperçu">
-                    <i class="fas fa-times" aria-hidden="true"></i>
-                </button>
+                <div class="preview-url-bar" id="previewUrlBar">
+                    <i class="fas fa-lock" aria-hidden="true"></i>
+                    <span id="previewUrl">site.vercel.app</span>
+                </div>
+                <div class="preview-actions">
+                    <a href="#" id="previewExternalLink" class="preview-external" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir dans un nouvel onglet">
+                        <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                    </a>
+                    <button class="preview-close" id="previewCloseBtn" aria-label="Fermer l'aperçu">
+                        <i class="fas fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
             </div>
             <div class="preview-content" id="previewContent">
-                <div class="preview-screenshots" id="previewScreenshots">
-                    <!-- Les images seront injectées dynamiquement -->
+                <!-- Loader -->
+                <div class="preview-loader" id="previewLoader">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Chargement du site...</p>
                 </div>
+                <!-- Iframe -->
+                <iframe id="previewIframe" class="preview-iframe" title="Aperçu du projet"></iframe>
+                <!-- Placeholder si pas d'URL -->
                 <div class="preview-placeholder" id="previewPlaceholder">
-                    <i class="fas fa-images"></i>
-                    <p id="placeholderTitle">Aperçu du projet</p>
-                    <span>Screenshots à venir</span>
-                    <div class="preview-placeholder-files" id="placeholderFiles">
-                        <!-- Les noms de fichiers seront injectés dynamiquement -->
-                    </div>
+                    <i class="fas fa-code"></i>
+                    <p id="placeholderTitle">Site en cours de développement</p>
+                    <span>Ce projet sera bientôt disponible en ligne</span>
                 </div>
             </div>
             <div class="preview-footer">
                 <span class="preview-hint">
                     <i class="fas fa-mouse-pointer"></i>
-                    Éloignez la souris pour fermer
+                    Cliquez en dehors ou appuyez Échap pour fermer
                 </span>
             </div>
         </div>

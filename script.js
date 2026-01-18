@@ -371,44 +371,35 @@ window.addEventListener('load', () => {
 });
 
 // ========================================
-// Preview Overlay (Multi-projets)
+// Preview Overlay (Iframe)
 // ========================================
 
 const previewOverlay = document.getElementById('previewOverlay');
 const previewContainer = document.getElementById('previewContainer');
 const previewCloseBtn = document.getElementById('previewCloseBtn');
-const previewTitle = document.getElementById('previewTitle');
-const previewScreenshots = document.getElementById('previewScreenshots');
+const previewIframe = document.getElementById('previewIframe');
+const previewLoader = document.getElementById('previewLoader');
 const previewPlaceholder = document.getElementById('previewPlaceholder');
+const previewUrl = document.getElementById('previewUrl');
+const previewExternalLink = document.getElementById('previewExternalLink');
 const placeholderTitle = document.getElementById('placeholderTitle');
-const placeholderFiles = document.getElementById('placeholderFiles');
-let closeTimeout = null;
 
-// Configuration des projets
+// ============================================
+// CONFIGURATION DES PROJETS
+// Remplace les URLs null par tes URLs Vercel
+// ============================================
 const projects = {
     'suivi-travaux': {
-        title: 'Suivi Travaux - Application de gestion',
-        screenshots: [
-            'screenshots/suivi-travaux-1.png',
-            'screenshots/suivi-travaux-2.png',
-            'screenshots/suivi-travaux-3.png'
-        ]
+        title: 'Suivi Travaux',
+        url: null  // Remplace par: 'https://suivi-travaux.vercel.app'
     },
     'antoine-vigne': {
-        title: 'Antoine Vigne - Beatmaker',
-        screenshots: [
-            'screenshots/antoine-vigne-1.png',
-            'screenshots/antoine-vigne-2.png',
-            'screenshots/antoine-vigne-3.png'
-        ]
+        title: 'Antoine Vigne',
+        url: null  // Remplace par: 'https://antoine-vigne.vercel.app'
     },
     's3tp-btp': {
-        title: 'S3TP BTP - Travaux Publics',
-        screenshots: [
-            'screenshots/s3tp-btp-1.png',
-            'screenshots/s3tp-btp-2.png',
-            'screenshots/s3tp-btp-3.png'
-        ]
+        title: 'S3TP BTP',
+        url: null  // Remplace par: 'https://s3tp-btp.vercel.app'
     }
 };
 
@@ -418,72 +409,69 @@ function openPreview(projectId) {
     const project = projects[projectId];
     if (!project) return;
 
-    // Update title
-    previewTitle.textContent = project.title;
-    placeholderTitle.textContent = `Aperçu de ${project.title}`;
+    // Reset state
+    previewIframe.classList.remove('loaded');
+    previewLoader.classList.remove('hidden');
+    previewPlaceholder.classList.remove('visible');
+    previewIframe.src = '';
 
-    // Clear previous screenshots
-    previewScreenshots.innerHTML = '';
-    previewPlaceholder.style.display = 'none';
+    // Check if project has URL
+    if (project.url) {
+        // Show URL in bar
+        previewUrl.textContent = project.url.replace('https://', '');
+        previewExternalLink.href = project.url;
+        previewExternalLink.style.display = 'flex';
 
-    // Track loaded images
-    let loadedImages = 0;
-    let failedImages = 0;
+        // Load iframe
+        previewIframe.src = project.url;
 
-    // Create and load screenshots
-    project.screenshots.forEach((src, index) => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = `${project.title} - Screenshot ${index + 1}`;
-        img.className = 'preview-screenshot';
-        img.loading = 'lazy';
-
-        img.onload = () => {
-            loadedImages++;
-            img.style.display = 'block';
+        // Handle iframe load
+        previewIframe.onload = () => {
+            previewLoader.classList.add('hidden');
+            previewIframe.classList.add('loaded');
         };
 
-        img.onerror = () => {
-            failedImages++;
-            img.style.display = 'none';
-            // If all images failed, show placeholder
-            if (failedImages === project.screenshots.length) {
-                showPlaceholder(projectId);
+        // Handle iframe error (timeout after 10s)
+        setTimeout(() => {
+            if (!previewIframe.classList.contains('loaded')) {
+                previewLoader.classList.add('hidden');
+                showPlaceholder(project.title, 'Le site met du temps à charger...');
             }
-        };
+        }, 10000);
 
-        previewScreenshots.appendChild(img);
-    });
+    } else {
+        // No URL - show placeholder immediately
+        previewUrl.textContent = 'En développement';
+        previewExternalLink.style.display = 'none';
+        previewLoader.classList.add('hidden');
+        showPlaceholder(project.title, 'Ce projet sera bientôt disponible en ligne');
+    }
 
     // Show overlay
     previewOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-
-    // Clear any pending close timeout
-    if (closeTimeout) {
-        clearTimeout(closeTimeout);
-        closeTimeout = null;
-    }
 }
 
-function showPlaceholder(projectId) {
+function showPlaceholder(title, message) {
     if (!previewPlaceholder) return;
 
-    const project = projects[projectId];
-    previewPlaceholder.style.display = 'block';
-
-    // Update placeholder files list
-    if (project && placeholderFiles) {
-        placeholderFiles.innerHTML = project.screenshots
-            .map(src => `<code>${src}</code>`)
-            .join('');
-    }
+    placeholderTitle.textContent = title;
+    previewPlaceholder.querySelector('span').textContent = message;
+    previewPlaceholder.classList.add('visible');
 }
 
 function closePreview() {
     if (previewOverlay) {
         previewOverlay.classList.remove('active');
         document.body.style.overflow = '';
+
+        // Clear iframe after animation
+        setTimeout(() => {
+            if (previewIframe) {
+                previewIframe.src = '';
+                previewIframe.classList.remove('loaded');
+            }
+        }, 300);
     }
 }
 
@@ -499,22 +487,6 @@ document.querySelectorAll('.portfolio-preview-btn[data-preview]').forEach(btn =>
 // Close button handler
 if (previewCloseBtn) {
     previewCloseBtn.addEventListener('click', closePreview);
-}
-
-// Close when mouse leaves the container
-if (previewContainer) {
-    previewContainer.addEventListener('mouseleave', () => {
-        closeTimeout = setTimeout(() => {
-            closePreview();
-        }, 300);
-    });
-
-    previewContainer.addEventListener('mouseenter', () => {
-        if (closeTimeout) {
-            clearTimeout(closeTimeout);
-            closeTimeout = null;
-        }
-    });
 }
 
 // Close on click outside
