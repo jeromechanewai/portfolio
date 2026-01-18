@@ -371,31 +371,112 @@ window.addEventListener('load', () => {
 });
 
 // ========================================
-// Preview Overlay
+// Preview Overlay (Multi-projets)
 // ========================================
 
 const previewOverlay = document.getElementById('previewOverlay');
 const previewContainer = document.getElementById('previewContainer');
 const previewCloseBtn = document.getElementById('previewCloseBtn');
+const previewTitle = document.getElementById('previewTitle');
+const previewScreenshots = document.getElementById('previewScreenshots');
+const previewPlaceholder = document.getElementById('previewPlaceholder');
+const placeholderTitle = document.getElementById('placeholderTitle');
+const placeholderFiles = document.getElementById('placeholderFiles');
 let closeTimeout = null;
 
-function openPreview() {
-    if (previewOverlay) {
-        previewOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+// Configuration des projets
+const projects = {
+    'suivi-travaux': {
+        title: 'Suivi Travaux - Application de gestion',
+        screenshots: [
+            'screenshots/suivi-travaux-1.png',
+            'screenshots/suivi-travaux-2.png',
+            'screenshots/suivi-travaux-3.png'
+        ]
+    },
+    'antoine-vigne': {
+        title: 'Antoine Vigne - Beatmaker',
+        screenshots: [
+            'screenshots/antoine-vigne-1.png',
+            'screenshots/antoine-vigne-2.png',
+            'screenshots/antoine-vigne-3.png'
+        ]
+    },
+    's3tp-btp': {
+        title: 'S3TP BTP - Travaux Publics',
+        screenshots: [
+            'screenshots/s3tp-btp-1.png',
+            'screenshots/s3tp-btp-2.png',
+            'screenshots/s3tp-btp-3.png'
+        ]
+    }
+};
 
-        // Clear any pending close timeout
-        if (closeTimeout) {
-            clearTimeout(closeTimeout);
-            closeTimeout = null;
-        }
+function openPreview(projectId) {
+    if (!previewOverlay) return;
+
+    const project = projects[projectId];
+    if (!project) return;
+
+    // Update title
+    previewTitle.textContent = project.title;
+    placeholderTitle.textContent = `Aperçu de ${project.title}`;
+
+    // Clear previous screenshots
+    previewScreenshots.innerHTML = '';
+    previewPlaceholder.style.display = 'none';
+
+    // Track loaded images
+    let loadedImages = 0;
+    let failedImages = 0;
+
+    // Create and load screenshots
+    project.screenshots.forEach((src, index) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `${project.title} - Screenshot ${index + 1}`;
+        img.className = 'preview-screenshot';
+        img.loading = 'lazy';
+
+        img.onload = () => {
+            loadedImages++;
+            img.style.display = 'block';
+        };
+
+        img.onerror = () => {
+            failedImages++;
+            img.style.display = 'none';
+            // If all images failed, show placeholder
+            if (failedImages === project.screenshots.length) {
+                showPlaceholder(projectId);
+            }
+        };
+
+        previewScreenshots.appendChild(img);
+    });
+
+    // Show overlay
+    previewOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Clear any pending close timeout
+    if (closeTimeout) {
+        clearTimeout(closeTimeout);
+        closeTimeout = null;
     }
 }
 
-function showPlaceholder() {
-    const placeholder = document.getElementById('previewPlaceholder');
-    if (placeholder) {
-        placeholder.style.display = 'block';
+function showPlaceholder(projectId) {
+    if (!previewPlaceholder) return;
+
+    const project = projects[projectId];
+    previewPlaceholder.style.display = 'block';
+
+    // Update placeholder files list
+    if (project && placeholderFiles) {
+        placeholderFiles.innerHTML = project.screenshots
+            .map(src => `<code>${src}</code>`)
+            .join('');
     }
 }
 
@@ -406,11 +487,12 @@ function closePreview() {
     }
 }
 
-// Handle preview button clicks (replaces inline onclick)
+// Handle preview button clicks
 document.querySelectorAll('.portfolio-preview-btn[data-preview]').forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
-        openPreview();
+        const projectId = btn.getAttribute('data-preview');
+        openPreview(projectId);
     });
 });
 
@@ -419,25 +501,15 @@ if (previewCloseBtn) {
     previewCloseBtn.addEventListener('click', closePreview);
 }
 
-// Handle image loading errors
-document.querySelectorAll('.preview-screenshot').forEach(img => {
-    img.addEventListener('error', function() {
-        this.style.display = 'none';
-        showPlaceholder();
-    });
-});
-
 // Close when mouse leaves the container
 if (previewContainer) {
     previewContainer.addEventListener('mouseleave', () => {
-        // Small delay before closing to avoid accidental closes
         closeTimeout = setTimeout(() => {
             closePreview();
         }, 300);
     });
 
     previewContainer.addEventListener('mouseenter', () => {
-        // Cancel close if mouse returns
         if (closeTimeout) {
             clearTimeout(closeTimeout);
             closeTimeout = null;

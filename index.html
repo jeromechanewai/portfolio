@@ -294,7 +294,25 @@
                 <p class="section-subtitle">Découvrez quelques projets sur lesquels j'ai travaillé</p>
             </div>
             <div class="portfolio-grid">
-                <div class="portfolio-item featured-project" data-preview="antoine-vigne">
+                <!-- Projet 1 : Suivi Travaux -->
+                <div class="portfolio-item featured-project">
+                    <div class="portfolio-image">
+                        <div class="portfolio-placeholder">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="portfolio-overlay">
+                            <span class="portfolio-category">Application Web</span>
+                            <h3>Suivi Travaux</h3>
+                            <p>Application de suivi de chantier avec gestion des tâches et reporting en temps réel</p>
+                            <button class="portfolio-preview-btn" data-preview="suivi-travaux" data-title="Suivi Travaux - Application de gestion">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                                Aperçu du site
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Projet 2 : Antoine Vigne -->
+                <div class="portfolio-item">
                     <div class="portfolio-image">
                         <div class="portfolio-placeholder">
                             <i class="fas fa-music"></i>
@@ -303,34 +321,27 @@
                             <span class="portfolio-category">Site Artiste</span>
                             <h3>Antoine Vigne</h3>
                             <p>Site vitrine pour beatmaker avec intégration de ses productions musicales</p>
-                            <button class="portfolio-preview-btn" data-preview="antoine-vigne">
+                            <button class="portfolio-preview-btn" data-preview="antoine-vigne" data-title="Antoine Vigne - Beatmaker">
                                 <i class="fas fa-eye" aria-hidden="true"></i>
                                 Aperçu du site
                             </button>
                         </div>
                     </div>
                 </div>
+                <!-- Projet 3 : S3TP BTP -->
                 <div class="portfolio-item">
                     <div class="portfolio-image">
                         <div class="portfolio-placeholder">
-                            <i class="fas fa-store"></i>
-                        </div>
-                        <div class="portfolio-overlay">
-                            <span class="portfolio-category">E-commerce</span>
-                            <h3>Boutique en ligne</h3>
-                            <p>Site de dropshipping avec gestion complète des commandes</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-image">
-                        <div class="portfolio-placeholder">
-                            <i class="fas fa-building"></i>
+                            <i class="fas fa-hard-hat"></i>
                         </div>
                         <div class="portfolio-overlay">
                             <span class="portfolio-category">Site Vitrine</span>
-                            <h3>Site Corporate</h3>
-                            <p>Présentation d'entreprise avec design professionnel</p>
+                            <h3>S3TP BTP</h3>
+                            <p>Site vitrine professionnel pour entreprise de travaux publics à La Réunion</p>
+                            <button class="portfolio-preview-btn" data-preview="s3tp-btp" data-title="S3TP BTP - Travaux Publics">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                                Aperçu du site
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -508,7 +519,7 @@
         </div>
     </footer>
 
-    <!-- Preview Overlay -->
+    <!-- Preview Overlay (Dynamique) -->
     <div class="preview-overlay" id="previewOverlay">
         <div class="preview-container" id="previewContainer">
             <div class="preview-header">
@@ -517,26 +528,21 @@
                     <span></span>
                     <span></span>
                 </div>
-                <span class="preview-title">Antoine Vigne - Beatmaker</span>
+                <span class="preview-title" id="previewTitle">Aperçu du projet</span>
                 <button class="preview-close" id="previewCloseBtn" aria-label="Fermer l'aperçu">
                     <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
             </div>
             <div class="preview-content" id="previewContent">
-                <!-- Screenshots du site Antoine Vigne -->
                 <div class="preview-screenshots" id="previewScreenshots">
-                    <img src="screenshots/antoine-vigne-1.png" alt="Antoine Vigne - Hero" class="preview-screenshot" loading="lazy">
-                    <img src="screenshots/antoine-vigne-2.png" alt="Antoine Vigne - Productions" class="preview-screenshot" loading="lazy">
-                    <img src="screenshots/antoine-vigne-3.png" alt="Antoine Vigne - Contact" class="preview-screenshot" loading="lazy">
+                    <!-- Les images seront injectées dynamiquement -->
                 </div>
-                <div class="preview-placeholder" id="previewPlaceholder" style="display: none;">
+                <div class="preview-placeholder" id="previewPlaceholder">
                     <i class="fas fa-images"></i>
-                    <p>Aperçu du site Antoine Vigne</p>
-                    <span>Ajoutez vos screenshots dans le dossier /screenshots/</span>
-                    <div class="preview-placeholder-files">
-                        <code>antoine-vigne-1.png</code>
-                        <code>antoine-vigne-2.png</code>
-                        <code>antoine-vigne-3.png</code>
+                    <p id="placeholderTitle">Aperçu du projet</p>
+                    <span>Screenshots à venir</span>
+                    <div class="preview-placeholder-files" id="placeholderFiles">
+                        <!-- Les noms de fichiers seront injectés dynamiquement -->
                     </div>
                 </div>
             </div>
