@@ -391,15 +391,15 @@ const placeholderTitle = document.getElementById('placeholderTitle');
 const projects = {
     'suivi-travaux': {
         title: 'Suivi Travaux',
-        url: null  // Remplace par: 'https://suivi-travaux.vercel.app'
+        url: 'https://suivi-travaux.vercel.app/preview.html'
     },
     'antoine-vigne': {
         title: 'Antoine Vigne',
-        url: null  // Remplace par: 'https://antoine-vigne.vercel.app'
+        url: 'https://antoine-vigne.vercel.app/'
     },
     's3tp-btp': {
         title: 'S3TP BTP',
-        url: null  // Remplace par: 'https://s3tp-btp.vercel.app'
+        url: 'https://s3tp-btp.vercel.app/'
     }
 };
 
