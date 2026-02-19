@@ -1862,6 +1862,124 @@ a.portfolio-item {
 }
 
 /* ========================================
+   Mentions Légales Modal
+======================================== */
+.footer-legal-link {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: underline;
+    transition: var(--transition);
+}
+
+.footer-legal-link:hover {
+    color: white;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.8);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-container {
+    background: white;
+    border-radius: var(--radius-lg);
+    max-width: 700px;
+    width: 100%;
+    max-height: 85vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-xl);
+    transform: scale(0.95) translateY(10px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-container {
+    transform: scale(1) translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 30px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.modal-header h2 {
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.modal-close {
+    width: 36px;
+    height: 36px;
+    background: var(--background-alt);
+    border: none;
+    border-radius: 8px;
+    color: var(--text-light);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.modal-close:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.modal-body {
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.legal-section {
+    margin-bottom: 28px;
+}
+
+.legal-section:last-child {
+    margin-bottom: 0;
+}
+
+.legal-section h3 {
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+    color: var(--primary);
+}
+
+.legal-section p {
+    color: var(--text);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 6px;
+}
+
+.legal-section p:last-child {
+    margin-bottom: 0;
+}
+
+/* ========================================
    Animations
 ======================================== */
 @keyframes fadeInUp {

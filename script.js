@@ -500,7 +500,53 @@ if (previewOverlay) {
 
 // Close on Escape key
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && previewOverlay && previewOverlay.classList.contains('active')) {
-        closePreview();
+    if (e.key === 'Escape') {
+        if (previewOverlay && previewOverlay.classList.contains('active')) {
+            closePreview();
+        }
+        if (mentionsModal && mentionsModal.classList.contains('active')) {
+            closeMentionsLegales();
+        }
     }
 });
+
+// ========================================
+// Mentions Légales Modal
+// ========================================
+
+const mentionsModal = document.getElementById('mentionsLegalesModal');
+const mentionsBtn = document.getElementById('mentionsLegalesBtn');
+const mentionsClose = document.getElementById('mentionsLegalesClose');
+
+function openMentionsLegales() {
+    if (mentionsModal) {
+        mentionsModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeMentionsLegales() {
+    if (mentionsModal) {
+        mentionsModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+if (mentionsBtn) {
+    mentionsBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openMentionsLegales();
+    });
+}
+
+if (mentionsClose) {
+    mentionsClose.addEventListener('click', closeMentionsLegales);
+}
+
+if (mentionsModal) {
+    mentionsModal.addEventListener('click', (e) => {
+        if (e.target === mentionsModal) {
+            closeMentionsLegales();
+        }
+    });
+}
