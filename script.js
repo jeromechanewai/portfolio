@@ -111,7 +111,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe elements
-document.querySelectorAll('.service-card, .portfolio-item, .timeline-item, .trust-point, .process-step, .stat-card').forEach(el => {
+document.querySelectorAll('.pricing-card, .option-item, .portfolio-item, .timeline-item, .trust-point, .process-step, .stat-card').forEach(el => {
     el.classList.add('fade-in');
     observer.observe(el);
 });
