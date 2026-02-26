@@ -776,6 +776,11 @@ section {
     line-height: 1;
 }
 
+.pricing-amount.pricing-on-quote {
+    font-size: 1.8rem;
+    font-family: 'Inter', sans-serif;
+}
+
 .pricing-card.featured .pricing-amount {
     background: var(--gradient);
     -webkit-background-clip: text;
