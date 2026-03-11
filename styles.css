@@ -859,7 +859,8 @@ section {
     align-items: center;
     justify-content: center;
     gap: 0;
-    background: var(--secondary);
+    background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 100%);
+    border: 1px solid rgba(37, 99, 235, 0.14);
     border-radius: var(--radius-lg);
     padding: 28px 40px;
     margin-bottom: 50px;
@@ -885,14 +886,14 @@ section {
 
 .value-stat span {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-light);
     line-height: 1.4;
 }
 
 .value-divider {
     width: 1px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(37, 99, 235, 0.18);
     flex-shrink: 0;
     margin: 0 30px;
 }
