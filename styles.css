@@ -1665,6 +1665,316 @@ a.portfolio-item {
 }
 
 /* ========================================
+   Klipz.re — Featured SaaS Portfolio Card
+======================================== */
+.portfolio-saas-feature {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 400px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* — Left: animated visual area — */
+.klipz-visual-area {
+    position: relative;
+    background: linear-gradient(135deg, #0d1224 0%, #1a1040 50%, #0d1224 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    overflow: hidden;
+}
+
+.klipz-bg-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+}
+
+.klipz-glow-1 {
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.35) 0%, transparent 70%);
+    top: -60px;
+    left: -60px;
+}
+
+.klipz-glow-2 {
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, transparent 70%);
+    bottom: -40px;
+    right: -40px;
+}
+
+/* Glassmorphism booking mockup card */
+.klipz-ui-mockup {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.06);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.klipz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.klipz-logo {
+    color: #a78bfa;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.klipz-logo i {
+    color: #7c3aed;
+    margin-right: 4px;
+}
+
+.klipz-date {
+    color: rgba(255,255,255,0.4);
+    font-size: 0.72rem;
+}
+
+/* Calendar slots */
+.klipz-calendar-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.klipz-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
+
+.klipz-slot .klipz-time {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.72rem;
+    min-width: 40px;
+}
+
+.klipz-slot.booked {
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.45);
+}
+
+.klipz-slot.booked span {
+    color: rgba(255,255,255,0.45);
+}
+
+.klipz-check {
+    color: #10b981;
+    margin-left: 6px;
+    font-size: 0.7rem;
+}
+
+.klipz-slot.active {
+    background: rgba(124, 58, 237, 0.25);
+    border: 1px solid rgba(124, 58, 237, 0.5);
+    color: white;
+    position: relative;
+    overflow: visible;
+}
+
+.klipz-slot.active::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 8px;
+    border: 1px solid rgba(124, 58, 237, 0.6);
+    animation: klipz-pulse 2.4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes klipz-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0; transform: scale(1.06); }
+}
+
+.klipz-badge {
+    background: #7c3aed;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.klipz-slot.free {
+    background: rgba(255,255,255,0.03);
+    border: 1px dashed rgba(255,255,255,0.1);
+}
+
+.klipz-free-label {
+    color: rgba(255,255,255,0.25);
+    font-style: italic;
+    font-size: 0.75rem;
+}
+
+/* SMS confirmation strip */
+.klipz-notification {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: 8px;
+    color: #6ee7b7;
+    font-size: 0.78rem;
+    font-weight: 500;
+}
+
+.klipz-notification i {
+    color: #10b981;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+/* — Right: content area — */
+.klipz-content-area {
+    background: white;
+    display: flex;
+    align-items: center;
+    padding: 48px 40px;
+}
+
+.klipz-content-inner {
+    max-width: 400px;
+}
+
+.klipz-category-badge {
+    display: inline-block;
+    padding: 5px 14px;
+    background: linear-gradient(135deg, #ede9fe, #dbeafe);
+    color: #5b21b6;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 20px;
+    margin-bottom: 14px;
+}
+
+.klipz-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 8px;
+    line-height: 1.15;
+}
+
+.klipz-tagline {
+    font-size: 0.95rem;
+    color: var(--primary);
+    font-weight: 500;
+    margin-bottom: 14px;
+}
+
+.klipz-description {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.65;
+    margin-bottom: 20px;
+}
+
+.klipz-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.klipz-tags span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    background: var(--background-alt);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.78rem;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.klipz-tags span i {
+    color: var(--primary);
+    font-size: 0.72rem;
+}
+
+.klipz-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--gradient);
+    color: white;
+    transition: var(--transition);
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
+}
+
+.klipz-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.45);
+}
+
+/* Responsive — Klipz card */
+@media (max-width: 900px) {
+    .portfolio-saas-feature {
+        grid-template-columns: 1fr;
+    }
+
+    .klipz-visual-area {
+        min-height: 280px;
+        padding: 30px;
+    }
+
+    .klipz-ui-mockup {
+        max-width: 100%;
+    }
+
+    .klipz-content-area {
+        padding: 32px 24px;
+    }
+
+    .klipz-title {
+        font-size: 1.6rem;
+    }
+}
+
+/* ========================================
    Timeline Section
 ======================================== */
 .timeline-container {
