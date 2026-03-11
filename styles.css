@@ -815,8 +815,8 @@ section {
 
 .pricing-features {
     list-style: none;
-    padding: 20px 24px;
-    flex: 1;
+    padding: 0;
+    margin-bottom: 4px;
 }
 
 .pricing-features li {
@@ -851,6 +851,140 @@ section {
 .pricing-card .btn {
     margin: 0 24px 24px;
     width: calc(100% - 48px);
+}
+
+/* Value justification bar */
+.pricing-value-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    background: var(--secondary);
+    border-radius: var(--radius-lg);
+    padding: 28px 40px;
+    margin-bottom: 50px;
+}
+
+.value-stat {
+    flex: 1;
+    text-align: center;
+}
+
+.value-stat strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    margin-bottom: 4px;
+}
+
+.value-stat span {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.4;
+}
+
+.value-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.15);
+    flex-shrink: 0;
+    margin: 0 30px;
+}
+
+/* Pricing hours sub-label */
+.pricing-hours {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+/* Pricing body */
+.pricing-body {
+    padding: 0 24px 20px;
+    flex: 1;
+}
+
+/* Section label inside card */
+.pricing-section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-light);
+    margin: 20px 0 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pricing-section-label i {
+    color: var(--primary);
+    font-size: 0.65rem;
+}
+
+/* Accompagnement divider */
+.pricing-accomp-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 16px 0 4px;
+}
+
+.pricing-accomp-divider::before,
+.pricing-accomp-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.pricing-accomp-divider span {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary);
+    white-space: nowrap;
+}
+
+/* Accompagnement feature items */
+.pricing-features.pricing-accomp {
+    padding: 0;
+}
+
+.pricing-accomp li {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 6px 0;
+    font-size: 0.85rem;
+    color: var(--text);
+}
+
+.pricing-accomp li i {
+    color: var(--primary);
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.pricing-accomp li em {
+    font-style: normal;
+    color: var(--text-light);
+    font-size: 0.8rem;
+}
+
+/* Conditions 6-grid */
+.conditions-grid-6 {
+    grid-template-columns: repeat(3, 1fr);
 }
 
 /* Options & Compléments */
@@ -2100,9 +2234,17 @@ a.portfolio-item {
         height: 200px;
     }
 
+    .pricing-value-bar {
+        padding: 20px 24px;
+    }
+
+    .value-divider {
+        margin: 0 16px;
+    }
+
     .pricing-grid {
         grid-template-columns: 1fr;
-        max-width: 420px;
+        max-width: 480px;
         margin: 0 auto 60px;
     }
 
@@ -2128,6 +2270,10 @@ a.portfolio-item {
     }
 
     .conditions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .conditions-grid-6 {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -2291,12 +2437,25 @@ a.portfolio-item {
         padding: 20px;
     }
 
-    .pricing-card-header {
-        padding: 30px 20px 24px;
+    .pricing-value-bar {
+        flex-direction: column;
+        gap: 16px;
+        padding: 24px 20px;
+        text-align: center;
     }
 
-    .pricing-features {
-        padding: 20px;
+    .value-divider {
+        width: 40px;
+        height: 1px;
+        margin: 0 auto;
+    }
+
+    .pricing-card-header {
+        padding: 30px 20px 20px;
+    }
+
+    .pricing-body {
+        padding: 0 20px 16px;
     }
 
     .pricing-card .btn {
@@ -2316,7 +2475,8 @@ a.portfolio-item {
         padding: 20px;
     }
 
-    .conditions-grid {
+    .conditions-grid,
+    .conditions-grid-6 {
         grid-template-columns: 1fr;
     }
 
