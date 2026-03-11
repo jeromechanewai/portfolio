@@ -696,8 +696,8 @@ section {
 
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
     align-items: start;
     margin-bottom: 80px;
 }
@@ -2101,8 +2101,8 @@ a.portfolio-item {
     }
 
     .pricing-grid {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 700px;
+        grid-template-columns: 1fr;
+        max-width: 420px;
         margin: 0 auto 60px;
     }
 
