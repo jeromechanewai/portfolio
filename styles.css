@@ -1976,6 +1976,123 @@ a.portfolio-item {
 }
 
 /* ========================================
+   Lumière Shop — E-commerce Demo Portfolio Card
+======================================== */
+.lumiere-mockup-wrap {
+    background: linear-gradient(135deg, #1a0a2e 0%, #2d1155 60%, #1a0a2e 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.lumiere-mockup {
+    width: 88%;
+    max-width: 320px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 14px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.lumiere-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.lumiere-logo {
+    color: #f0c8e8;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+}
+
+.lumiere-logo i {
+    color: #e8a0d0;
+    margin-right: 4px;
+}
+
+.lumiere-nav-dots {
+    display: flex;
+    gap: 5px;
+}
+
+.lumiere-nav-dots span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+}
+
+.lumiere-products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.lumiere-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.75);
+    text-align: center;
+}
+
+.lumiere-product strong {
+    color: #f0c8e8;
+    font-size: 0.7rem;
+}
+
+.lumiere-img {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 8px;
+}
+
+.lumiere-img-1 { background: linear-gradient(135deg, #f9d4c7, #f3a998); }
+.lumiere-img-2 { background: linear-gradient(135deg, #d4e8f9, #a3c8f0); }
+.lumiere-img-3 { background: linear-gradient(135deg, #e8d4f9, #c8a3f0); }
+
+.lumiere-cart-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(90deg, #9333ea, #ec4899);
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.lumiere-cart-bar i {
+    font-size: 0.75rem;
+}
+
+.lumiere-badge-cart {
+    margin-left: auto;
+    background: #fff;
+    color: #9333ea;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========================================
    Timeline Section
 ======================================== */
 .timeline-container {
